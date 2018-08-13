@@ -29,7 +29,13 @@ def nlp(data):
             if word_toarray[7] in negaposi_dic and int(negaposi_dic[word_toarray[7]]) < 0:
                 url = "https://thesaurus.weblio.jp/antonym/content/{0}".format(word_toarray[7])
                 driver.get(url)
-                result += driver.find_element_by_class_name('wtghtAntnm').text
+                try:
+                    result += driver.find_element_by_class_name('wtghtAntnm').text
+                except:
+                    result += word_toarray[7]
+                    tmp = s_text_6.GetLabel()
+                    tmp += word_toarray[7]
+                    s_text_6.SetLabel(tmp+' ')
             else:
                 result += word_toarray[7]
     return result
@@ -55,6 +61,7 @@ def click_togglebutton(event):
         t_button.SetLabel('OFF')
 
 def enter_textctrl(event):
+    s_text_6.SetLabel('')
     if t_button.GetValue() == True:
         input_textctrl = text_1.GetValue()
         output_textctrl = nlp(input_textctrl)
@@ -81,6 +88,8 @@ text_1.Bind(wx.EVT_TEXT_ENTER, enter_textctrl) #ボタンが押されたら，en
 s_text_3 = wx.StaticText(panel, wx.ID_ANY, '　　　　　　　')
 s_text_4 = wx.StaticText(panel, wx.ID_ANY, '出力文')
 text_2 = wx.TextCtrl(panel, wx.ID_ANY)
+s_text_5 = wx.StaticText(panel, wx.ID_ANY, '対義語切り替え不可リスト')
+s_text_6 = wx.StaticText(panel, wx.ID_ANY, '')
 
 layout = wx.BoxSizer(wx.VERTICAL)
 layout.Add(s_text_1, flag=wx.ALIGN_CENTER | wx.TOP,  border=10)
@@ -90,6 +99,8 @@ layout.Add(text_1, flag=wx.EXPAND | wx.ALL,  border=10)
 layout.Add(s_text_3, flag= wx.ALIGN_CENTER | wx.TOP,  border=10)
 layout.Add(s_text_4, flag=wx.ALIGN_LEFT | wx.LEFT, border=10)
 layout.Add(text_2, flag=wx.EXPAND | wx.ALL,  border=10)
+layout.Add(s_text_5, flag=wx.ALIGN_LEFT | wx.LEFT, border=10)
+layout.Add(s_text_6, flag=wx.ALIGN_LEFT | wx.LEFT, border=10)
 panel.SetSizer(layout)
 
 frame.Show()
