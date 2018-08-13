@@ -30,8 +30,8 @@ def nlp(data):
                 url = "https://thesaurus.weblio.jp/antonym/content/{0}".format(word_toarray[7])
                 driver.get(url)
                 result += driver.find_element_by_class_name('wtghtAntnm').text
-                else:
-                    result += word_toarray[7]
+            else:
+                result += word_toarray[7]
     return result
 
 def getNegaPosiDic():
