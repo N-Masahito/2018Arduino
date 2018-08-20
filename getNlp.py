@@ -26,29 +26,25 @@ def nlp(data):
         result_words = result_all.split("\n")[:-1]  # 単語ごとに分ける
         for word in result_words:
             word_toarray = re.split('[\t,]', word)
-            if word_toarray[7] in negaposi_dic and int(negaposi_dic[word_toarray[7]]) < 0:
-                url = "https://thesaurus.weblio.jp/antonym/content/{0}".format(word_toarray[7])
+            if word_toarray[0] in negaposi_dic and int(negaposi_dic[word_toarray[0]]) < 0:
+                url = "https://thesaurus.weblio.jp/antonym/content/{0}".format(word_toarray[0])
                 driver.get(url)
                 try:
                     result += driver.find_element_by_class_name('wtghtAntnm').text
+                    #result += driver.find_element_by_xpath('//*[@id="main"]/div[4]/div/div[1]/div/table/tbody/tr[1]/td[4]/span/a').text
                 except:
-                    result += word_toarray[7]
+                    result += word_toarray[0]
                     tmp = s_text_6.GetLabel()
-                    tmp += word_toarray[7]
+                    tmp += word_toarray[0]
                     s_text_6.SetLabel(tmp+' ')
             else:
-                result += word_toarray[7]
+                result += word_toarray[0]
     return result
 
 def getNegaPosiDic():
-    with codecs.open(os.path.join(__location__, "./dataset/yougen.csv"), 'r', 'utf-8') as f_in:
-        reader = csv.reader(f_in, delimiter=',', lineterminator='\n')
-        negaPosiDic = {}
-        for i, x in enumerate(reader):
-            y = x[0].split(" ")
-            negaPosiDic[y[1]] = y[0]
     with codecs.open(os.path.join(__location__, "./dataset/noun.csv"), 'r', 'utf-8') as f_in:
         reader = csv.reader(f_in, delimiter=',', lineterminator='\n')
+        negaPosiDic = {}
         for i, x in enumerate(reader):
             y = x[0].split(" ")
             negaPosiDic[y[1]] = y[0]
