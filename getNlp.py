@@ -42,7 +42,7 @@ def nlp(data):
     return result
 
 def getNegaPosiDic():
-    with codecs.open(os.path.join(__location__, "./dataset/noun.csv"), 'r', 'utf-8') as f_in:
+    with codecs.open(os.path.join(__location__, "./dataset/negaposinoun.csv"), 'r', 'utf-8') as f_in:
         reader = csv.reader(f_in, delimiter=',', lineterminator='\n')
         negaPosiDic = {}
         for i, x in enumerate(reader):
