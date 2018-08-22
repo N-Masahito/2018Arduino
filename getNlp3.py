@@ -57,17 +57,14 @@ def enter_textctrl(event):
         output_textctrl = nlp(input_textctrl, -1)
         text_2.SetLabel(output_textctrl)
         text_1.Clear()
-        print('a')
     elif radio_box_1.GetSelection() == 2:
         input_textctrl = text_1.GetValue()
         output_textctrl = nlp(input_textctrl, 1)
         text_2.SetLabel(output_textctrl)
         text_1.Clear()
-        print('b')
     else:
         text_2.SetLabel(text_1.GetValue())
         text_1.Clear()
-        print('c')
 
 #GUI生成部分
 application = wx.App()
