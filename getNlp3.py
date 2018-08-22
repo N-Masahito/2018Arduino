@@ -51,7 +51,7 @@ def getNegaPosiDic():
     return negaPosiDic
 
 def enter_textctrl(event):
-    s_text_6.Clear()
+    s_text_6.SetLabel('')
     if radio_box_1.GetSelection() == 1:
         input_textctrl = text_1.GetValue()
         output_textctrl = nlp(input_textctrl, -1)

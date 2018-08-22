@@ -52,7 +52,7 @@ def getNegaPosiDic():
 
 def enter_textctrl(event):
     if event.GetId() == 1:
-        s_text_6_1.Clear()
+        s_text_6_1.SetLabel('')
         if radio_box_2.GetSelection() == 1:
             input_textctrl = text_1_1.GetValue()
             output_textctrl = nlp(input_textctrl, -1)
@@ -67,7 +67,7 @@ def enter_textctrl(event):
             text_2_2.SetLabel(text_1_1.GetValue())
             text_1_1.Clear()
     elif event.GetId() == 2:
-        s_text_6_2.Clear()
+        s_text_6_2.SetLabel('')
         if radio_box_1.GetSelection() == 1:
             input_textctrl = text_1_2.GetValue()
             output_textctrl = nlp(input_textctrl, -1)

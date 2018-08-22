@@ -57,7 +57,7 @@ def click_togglebutton(event):
         t_button.SetLabel('OFF')
 
 def enter_textctrl(event):
-    s_text_6.Clear()
+    s_text_6.SetLabel('')
     if t_button.GetValue() == True:
         input_textctrl = text_1.GetValue()
         output_textctrl = nlp(input_textctrl)
